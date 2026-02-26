@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Concept Spark | Juan Duarte</title>
+    <style>
+        :root {
+            --bg-color: #f4f4f0; /* Un crema suave tipo papel de arte */
+            --text-color: #1a1a1a; /* Negro casi puro */
+            --accent-color: #000;
+        }
+ 
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }
+ 
+        h1 {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            opacity: 0.6;
+        }
+ 
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 2px; /* Bordes duros, más arquitectónico */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+ 
+        .prompt-box {
+            margin: 30px 0;
+        }
+ 
+        .label {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+ 
+        .result {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            min-height: 34px; /* Evita saltos */
+        }
+ 
+        .constraint {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            color: #555;
+            background: #eee;
+            padding: 5px 10px;
+            display: inline-block;
+        }
+ 
+        button {
+            background-color: var(--text-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+            margin-top: 20px;
+        }
+ 
+        button:active {
+            transform: scale(0.98);
+        }
+ 
+        button:hover {
+            opacity: 0.9;
+        }
+ 
+        .footer {
+            margin-top: 40px;
+            font-size: 11px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+ 
+    <h1>Juan Duarte | Visual Wit Generator</h1>
+ 
+    <div class="card">
+        <div class="prompt-box">
+            <span class="label">Tu Objeto (Musa Física)</span>
+            <div class="result" id="objectDisplay">...</div>
+        </div>
+        
+        <div style="width: 100%; height: 1px; background: #eee; margin: 20px 0;"></div>
+ 
+        <div class="prompt-box">
+            <span class="label">El Concepto (Reto Abstracto)</span>
+            <div class="result" id="conceptDisplay">...</div>
+        </div>
+ 
+        <div class="prompt-box">
+            <span class="label">Condición Técnica</span>
+            <div class="constraint" id="constraintDisplay">...</div>
+        </div>
+ 
+        <button onclick="generateSpark()">Generar Reto</button>
+    </div>
+ 
+    <div class="footer">
+        © 2026 Juan Duarte Studio. Internal Tool v1.0
+    </div>
+ 
+    <script>
+        // BASE DE DATOS CREATIVA
+        // Puedes agregar más elementos a estas listas cuando quieras.
+        
+        const objects = [
+            "Clip de papel", "Llave antigua", "Taza de café (mancha)", "Tijeras", 
+            "Audífonos enredados", "Cáscara de naranja", "Lápiz mordido", "Moneda", 
+            "Hoja seca", "Gapa de botella", "Fosforos/Cerillos", "Cuchara", 
+            "Goma de borrar", "Cable USB", "Botón de camisa", "Bolsa de té",
+            "Clavo oxidado", "Trozo de cuerda", "Galleta mordida", "Gancho de ropa"
+        ];
+ 
+        const concepts = [
+            "Soledad en compañía", "Velocidad mental", "El paso del tiempo", "Ansiedad social", 
+            "Libertad financiera", "Amor tóxico", "Silencio incómodo", "Caos urbano", 
+            "Equilibrio precario", "Fuerza bruta", "Fragilidad", "Explosión de ideas",
+            "Encierro", "Crecimiento personal", "Dualidad", "Memoria perdida",
+            "Miedo al futuro", "Conexión digital", "Hambre de éxito", "Paz interior"
+        ];
+ 
+        const constraints = [
+            "Uso estricto de tinta negra", 
+            "Estilo minimalista (máximo 5 trazos)", 
+            "Incorporar sombra real del objeto", 
+            "Estilo arquitectónico / planos", 
+            "Sin levantar el lápiz del papel", 
+            "Usar espacio negativo", 
+            "Interactuar con tu propia mano", 
+            "Estilo infantil / garabato",
+            "Perspectiva forzada"
+        ];
+ 
+        function generateSpark() {
+            // Lógica aleatoria simple
+            const randomObject = objects[Math.floor(Math.random() * objects.length)];
+            const randomConcept = concepts[Math.floor(Math.random() * concepts.length)];
+            const randomConstraint = constraints[Math.floor(Math.random() * constraints.length)];
+ 
+            // Inyectar en el HTML
+            document.getElementById('objectDisplay').innerText = randomObject;
+            document.getElementById('conceptDisplay').innerText = randomConcept;
+            document.getElementById('constraintDisplay').innerText = randomConstraint;
+            
+            // Efecto visual simple
+            const card = document.querySelector('.card');
+            card.style.transform = "scale(0.99)";
+            setTimeout(() => card.style.transform = "scale(1)", 100);
+        }
+ 
+        // Generar uno al cargar
+        window.onload = generateSpark;
+ 
+    </script>
+</body>
+</html>
